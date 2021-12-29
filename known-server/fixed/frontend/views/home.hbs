@@ -1,0 +1,23 @@
+<h1>Welcome home</h1>
+
+<button id="sample-button">Click me!!!</button>
+
+<div id="container"></div>
+
+
+<script>
+    document.getElementById('sample-button').addEventListener('click', evt => {
+        evt.preventDefault();
+
+        const container = document.getElementById('container');
+        fetch('http://localhost:3000/')
+                .then(res => res.json())
+                .then(res => {
+                    container.innerHTML = `<br/><b>Request sended succesfully!</b><br/><br/>${ res.message } | ${ res.date }<br/>`;
+                })
+                .catch(err => {
+                    console.error(err);
+                    container.innerHTML = '<b>Request error!<br/></b>';
+                })
+    })
+</script>
